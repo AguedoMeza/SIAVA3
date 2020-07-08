@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3bd8c8bd-0aee-463e-9a45-44da3e1a92cb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="ProjectId" id="1bC1vWo0NMFeUIIIh3EPkgGksWp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\siava3\application\views\vistas\dashboard" />
+      <recent name="C:\xampp\htdocs\siava3\application\controllers" />
+      <recent name="C:\xampp\htdocs\siava3\application\controllers\campana" />
+      <recent name="C:\xampp\htdocs\siava3\application\views\vistas\campana" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3bd8c8bd-0aee-463e-9a45-44da3e1a92cb" name="Default Changelist" comment="" />
+      <created>1588121492340</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588121492340</updated>
+      <workItem from="1588121493742" duration="4407000" />
+      <workItem from="1588172806880" duration="9676000" />
+      <workItem from="1588718325819" duration="5060000" />
+      <workItem from="1588778108333" duration="3804000" />
+      <workItem from="1588872159458" duration="24952000" />
+      <workItem from="1589467697034" duration="33961000" />
+      <workItem from="1589818102144" duration="16528000" />
+      <workItem from="1589905314569" duration="200000" />
+      <workItem from="1590771229264" duration="3036000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1589835255788">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589835255788" />
+    <state x="294" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1589212970049">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="294" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1589212970049" />
+  </component>
+</project>
