@@ -4329,7 +4329,7 @@ endif;
        </div>
        
        <!-- SEMANA 4 -->
-         <div class="tab-pane tabs-animation fade <?php if($nb_c_ma5 == 0): ?>show active<?php endif; ?>" id="tab-content-8" role="tabpanel">
+         <div class="tab-pane tabs-animation fade" id="tab-content-8" role="tabpanel">
            <!-- NUEVOS -->
             <div class="mb-3 card">
             <div class="card-header-tab card-header">
@@ -4710,13 +4710,13 @@ endif;
             <!-- FIN TOTAL SEMANA ANTERIOR 4-->
            
            <!-- SEMANA 5 -->
-            <div class="tab-pane tabs-animation fade  <?php if($nb_c_ma5 >= 0): ?>show active<?php endif; ?>" id="tab-content-9" role="tabpanel">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-9" role="tabpanel">
            <!-- NUEVOS -->
             <div class="mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Nuevos 29 - 05
+                    Créditos Nuevos 29 -05
                 </div>
             </div>
 
