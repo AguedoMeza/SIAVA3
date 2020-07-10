@@ -3154,33 +3154,34 @@ endif;
     <!-- SEMANAS -->
     <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
         <?php 
+        
         $i=0;$valor=0;
-         if($nb_c_ma5 != 0): 
-             $i=9;$valor=9;
-         else:
-             $i=8;$valor=8;
-             
-             endif;
+        
+        $i=9;$valor=9;
+        
         
         $semana = array();
+
         foreach ($this->data['rango_semana_ma'] as $wk):
           $semana[] = date('d',strtotime($wk['fi'])).' - '.date('d',strtotime($wk['ff']));
         endforeach; 
+
         $count = count($semana)-1;
        
-       for($a=0;$a<=$count;$a++){
-            $sep_fi = explode(' - ', $semana[($count-$a)]);
-            $m = date('m',strtotime($wk['ff']));
-            
-        ?>        
-        <li class="nav-item">
-            <a role="tab" class="nav-link  <?php if($i == $valor): ?>active <?php endif; ?>" id="tab-<?php echo $i ?>" data-toggle="tab" href="#tab-content-<?php echo $i ?>">
-                 <span>Días del  <?php echo $semana[($count-$a)]; ?></span>
-            </a>
-        </li>
-        <?php       
-    
-        $i--;
+       for($a=0;$a<=$count;$a++)
+       {
+                $sep_fi = explode(' - ', $semana[($count-$a)]);
+                $m = date('m',strtotime($wk['ff']));
+                
+            ?>        
+            <li class="nav-item">
+                <a role="tab" class="nav-link  <?php if($i == $valor): ?>active <?php endif; ?>" id="tab-<?php echo $i ?>" data-toggle="tab" href="#tab-content-<?php echo $i ?>">
+                     <span>Días del  <?php echo $semana[($count-$a)]; ?></span>
+                </a>
+            </li>
+            <?php       
+        
+            $i--;
        }
         ?>
     </ul>
@@ -3195,6 +3196,386 @@ endif;
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
                     Créditos Nuevos 
+                </div>
+            </div>
+
+                <div class="no-gutters row">
+                      <div class="col-sm-6 col-md-4 col-xl-4">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                        <div class="icon-wrapper rounded-circle">
+                            <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
+                            <i class="pe-7s-wallet text-dark opacity-8"></i></div>
+                            <div class="widget-chart-content">
+                                <div class="widget-subheading">Cantidad</div>
+                                <div class="widget-numbers"><?php echo $nb_c_ma1 ?></div>                                         
+                            </div>                                     
+                    </div>
+                    <div class="divider m-0 d-md-none d-sm-block"></div>                             
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-4">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                        <div class="icon-wrapper rounded-circle">
+                            <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
+                            <i class="pe-7s-cash text-white"></i></div>
+                            <div class="widget-chart-content">
+                                <div class="widget-subheading">Monto Dispersado</div>
+                                <div class="widget-numbers">$<span><?php echo number_format($nb_mo_ma1, 2, '.', ',')  //?></span></div>
+                            </div>
+                    </div>
+                    <div class="divider m-0 d-md-none d-sm-block"></div>                             
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-xl-4">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                        <div class="icon-wrapper rounded-circle">
+                            <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+                            <i class="pe-7s-piggy text-white"></i></div>
+                            <div class="widget-chart-content">
+                                <div class="widget-subheading">Bono</div>
+                                <div class="widget-numbers text-success">$<span><?php echo number_format($nb_b_ma1, 2, '.', ',') ?></span></div>
+                            </div>
+                    </div>
+                </div>
+                </div>
+                <div class="text-center d-block p-3 card-footer">
+
+                </div>
+            </div>
+           <!-- RENOVACION -->
+           <div class="mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                    Créditos Renovación
+                </div>
+            </div>
+
+                <div class="no-gutters row">
+                    <div class="col-sm-6 col-md-4 col-xl-4">
+                <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                    <div class="icon-wrapper rounded-circle">
+                        <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
+                        <i class="pe-7s-wallet text-dark opacity-8"></i></div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Cantidad</div>
+                            <div class="widget-numbers"><?php echo $pb_c_ma1 ?></div>                                        
+                        </div>                                    
+                </div>
+                <div class="divider m-0 d-md-none d-sm-block"></div>
+                </div>
+            <div class="col-sm-6 col-md-4 col-xl-4">
+                <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                    <div class="icon-wrapper rounded-circle">
+                        <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
+                        <i class="pe-7s-cash text-white"></i></div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Monto Dispersado</div>
+                            <div class="widget-numbers">$<span><?php echo number_format($pb_mo_ma1, 2, '.', ',') ?></span></div>
+                        </div>
+                </div>
+                <div class="divider m-0 d-md-none d-sm-block"></div>                            
+            </div>
+            <div class="col-sm-12 col-md-4 col-xl-4">
+                <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                    <div class="icon-wrapper rounded-circle">
+                        <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+                        <i class="pe-7s-piggy text-white"></i></div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Bono</div>
+                            <div class="widget-numbers text-success">$<span><?php echo number_format($pb_b_ma1, 2, '.', ',') ?></span></div>
+                        </div>
+                </div>
+            </div>
+                </div>
+                <div class="text-center d-block p-3 card-footer">
+
+                </div>
+            </div>
+           <!-- REACTIVACION -->
+           <div class="mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                    Créditos Reactivación Tradicional
+                </div>
+            </div>
+
+                <div class="no-gutters row">
+                    <div class="col-sm-6 col-md-4 col-xl-4">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="icon-wrapper rounded-circle">
+                       <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
+                       <i class="pe-7s-wallet text-dark opacity-8"></i></div>
+                   <div class="widget-chart-content">
+                       <div class="widget-subheading">Cantidad</div>
+                       <div class="widget-numbers"><?php echo $fbt_c_ma1 ?></div>                                            
+                   </div>
+               </div>
+               <div class="divider m-0 d-md-none d-sm-block"></div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-xl-4">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="icon-wrapper rounded-circle">
+                       <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
+                       <i class="pe-7s-cash text-white"></i></div>
+                   <div class="widget-chart-content">
+                       <div class="widget-subheading">Monto Dispersado</div>
+                       <div class="widget-numbers">$<span><?php echo number_format($fbt_mo_ma1, 2, '.', ',') ?></span></div>                                       
+                   </div>
+               </div>
+               <div class="divider m-0 d-md-none d-sm-block"></div>
+           </div>
+           <div class="col-sm-12 col-md-4 col-xl-4">
+              <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="icon-wrapper rounded-circle">
+                       <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+                       <i class="pe-7s-piggy text-white"></i></div>
+                   <div class="widget-chart-content">
+                       <div class="widget-subheading">Bono</div>
+                       <div class="widget-numbers text-success">$<span><?php echo number_format($calculoBono1, 2, '.', ',') ?></span></div>
+                   </div>
+               </div>
+           </div>
+                </div>
+                <div class="text-center d-block p-3 card-footer">
+
+                </div>
+            </div>
+           
+           <!-- REACTIVACION CAMPAÑA -->
+           <div class="mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                    Créditos Reactivación Campaña
+                </div>
+            </div>
+
+                <div class="no-gutters row">
+                    <div class="col-sm-6 col-md-4 col-xl-4">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="icon-wrapper rounded-circle">
+                       <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
+                       <i class="pe-7s-wallet text-dark opacity-8"></i></div>
+                   <div class="widget-chart-content">
+                       <div class="widget-subheading">Cantidad</div>
+                       <div class="widget-numbers"><?php echo $fbc_c_ma1 ?></div>                                            
+                   </div>
+               </div>
+               <div class="divider m-0 d-md-none d-sm-block"></div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-xl-4">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="icon-wrapper rounded-circle">
+                       <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
+                       <i class="pe-7s-cash text-white"></i></div>
+                   <div class="widget-chart-content">
+                       <div class="widget-subheading">Monto Dispersado</div>
+                       <div class="widget-numbers">$<span><?php echo number_format($fbc_mo_ma1, 2, '.', ',') ?></span></div>                                       
+                   </div>
+               </div>
+               <div class="divider m-0 d-md-none d-sm-block"></div>
+           </div>
+           <div class="col-sm-12 col-md-4 col-xl-4">
+              <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="icon-wrapper rounded-circle">
+                       <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+                       <i class="pe-7s-piggy text-white"></i></div>
+                   <div class="widget-chart-content">
+                       <div class="widget-subheading">Bono</div>
+                       <div class="widget-numbers text-success">$<span><?php echo number_format($fbc_b_ma1, 2, '.', ',') ?></span></div>
+                   </div>
+               </div>
+           </div>
+                </div>
+                <div class="text-center d-block p-3 card-footer">
+
+                </div>
+            </div>           
+           <!-- FIN REACTIVACION CAMPAÑA -->
+           
+           <!-- TOTAL SEMANA ANTERIOR 1-->
+               <div class="mb-3 card" style="background: #e0f3ff">
+           <div class="card-header-tab card-header" style="background: #e0f3ff">
+               <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                   <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                 Total semana 1
+               </div>
+           </div>
+           <div class="no-gutters row">
+               <div class="col-sm-6 col-md-4 col-xl-4">
+                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                           <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
+                           <i class="pe-7s-wallet text-dark opacity-8"></i></div>
+                       <div class="widget-chart-content">
+                           <div class="widget-subheading">Cantidad</div>
+                           <div class="widget-numbers"><?php echo $total_c_ma_s1 ?></div>                                
+                       </div>
+                   </div>
+                   <div class="divider m-0 d-md-none d-sm-block"></div>
+               </div>
+               <div class="col-sm-6 col-md-4 col-xl-4">
+                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                           <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
+                           <i class="pe-7s-cash text-white"></i></div>
+                       <div class="widget-chart-content">
+                           <div class="widget-subheading">Monto Dispersado</div>
+                           <div class="widget-numbers">$<span><?php echo number_format($total_mo_ma_s1, 2, '.', ',') ?></span></div>                                        
+                       </div>
+                   </div>
+                   <div class="divider m-0 d-md-none d-sm-block"></div>
+               </div>
+               <div class="col-sm-12 col-md-4 col-xl-4">
+                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                           <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+                           <i class="pe-7s-piggy text-white"></i></div>
+                       <div class="widget-chart-content">
+                           <div class="widget-subheading">Total Bono Semanal</div>
+                           <div class="widget-numbers text-success">$<span><?php echo number_format($total_b_ma_s1, 2, '.', ',') ?></span></div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="text-center d-block p-3 card-footer" style="background: #e0f3ff">
+           </div>
+       </div>
+            <!-- FIN TOTAL SEMANA ANTERIOR 1-->
+           <!-- COBRANZA -->
+                 <div class="mb-3 card">
+                 <div class="card-header-tab card-header">
+                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                         <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                       Cobranza 1 - 7
+                     </div>
+                 </div>                 
+            <div class="no-gutters row">
+                <?php 
+               
+                ?>
+                 <div class="col-sm-6 col-md-4 col-xl-4">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                                 <div class="icon-wrapper-bg opacity-10 bg-info"></div>
+                                 <i class="lnr-pie-chart text-white opacity-8"></i>
+                       </div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Porcentaje Semana 1</div>
+                            <div class="widget-numbers"><?php echo ($ec_w2_ma)  ?>%</div>
+                            <div class="widget-description opacity-8 text-focus">
+                                                <div class="d-inline  pr-1">
+                                                    <!--<i class="fa fa-angle-down"></i>-->
+                                                    <span class="pl-1">Bono</span>
+                                                </div>
+                                               <?php echo number_format($ec_cobranza_bono1_ma, 2, '.', ',') ?>
+                                            </div>
+                             
+                        </div>
+                    </div>
+                    <div class="divider m-0 d-md-none d-sm-block">
+                       
+                    </div>                        
+                </div>
+              
+                <div class="col-sm-6 col-md-4 col-xl-4"></div>
+                <div class="col-sm-6 col-md-4 col-xl-4">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                                <div class="icon-wrapper-bg opacity-10 bg-success"></div>
+                                 <i class="pe-7s-piggy text-white opacity-8"></i>
+                       </div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Acumulado</div>
+                            <div class="widget-numbers">$<span><?php 
+                            $ec_cobranza_total_ma=0;                            
+                           if($ec_w2_ma != ""){                               
+                               $ec_cobranza_total_ma = $ec_cobranza_bono1_ma;                              
+                           } echo number_format(($ec_cobranza_total_ma), 2, '.', ',')  
+                                    ?></span></div>
+                            <div class="widget-description opacity-8 text-focus">
+                                                <div class="d-inline pr-1">
+                                                    <!--<i class="fa fa-angle-down"></i>-->                                                  
+                                                </div>
+                                            </div>
+                        </div>
+                    </div>
+                    <div class="divider m-0 d-md-none d-sm-block">
+                        
+                    </div>                        
+                </div>
+                
+                              
+                
+            </div>
+                 <div class="text-center d-block p-3 card-footer">
+                     
+                 </div>                     
+             </div>
+           <!-- //COBRANZA-->
+           <!-- TOTAL de BONO -->
+                 <div class="mb-3 card">
+                 <div class="card-header-tab card-header">
+                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                         <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                       Total Semana + Cobranza
+                     </div>
+                 </div>                 
+            <div class="no-gutters row">
+               <div class="col-sm-6 col-md-4 col-xl-4">
+                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                        <div class="icon-wrapper rounded-circle">
+                            <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+                            <i class="pe-7s-piggy text-white"></i>
+                        </div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Bono Semana 1</div>
+                            <div class="widget-numbers">$<span><?php echo number_format($total_b_ma_s1, 2, '.', ',')  ?></span></div> 
+                        </div>
+                    </div>                 
+                </div>
+              
+                <div class="col-sm-6 col-md-4 col-xl-4">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                                <div class="icon-wrapper-bg opacity-10 bg-success"></div>
+                                 <i class="pe-7s-piggy text-white opacity-8"></i>
+                       </div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Cobranza</div>
+                            <div class="widget-numbers">$<span><?php echo number_format(($ec_cobranza_bono1_ma), 2, '.', ',')  ?></span></div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-xl-4">
+                       <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                       <div class="icon-wrapper rounded-circle">
+                                <div class="icon-wrapper-bg opacity-10 bg-success"></div>
+                                 <i class="pe-7s-piggy text-white opacity-8"></i>
+                       </div>
+                        <div class="widget-chart-content">
+                            <div class="widget-subheading">Bono Total</div>
+                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s1 +$ec_cobranza_bono1_ma), 2, '.', ',')  ?></span></div>                            
+                        </div>
+                    </div>                     
+                </div>
+            </div>
+                 <div class="text-center d-block p-3 card-footer">
+                     
+                 </div>                     
+             </div>
+           <!-- // BONO TOTAL -->
+           
+       </div>
+       <!-- SEMANA 2 -->
+       <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
+           <!-- NUEVOS -->
+            <div class="mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+                    Créditos Nuevos
                 </div>
             </div>
 
@@ -3225,7 +3606,7 @@ endif;
                 </div>
 
                 <div class="col-sm-12 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                         <div class="icon-wrapper rounded-circle">
                             <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                             <i class="pe-7s-piggy text-white"></i></div>
@@ -3275,7 +3656,7 @@ endif;
                 <div class="divider m-0 d-md-none d-sm-block"></div>                            
             </div>
             <div class="col-sm-12 col-md-4 col-xl-4">
-                <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+              <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                     <div class="icon-wrapper rounded-circle">
                         <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                         <i class="pe-7s-piggy text-white"></i></div>
@@ -3331,18 +3712,17 @@ endif;
                        <i class="pe-7s-piggy text-white"></i></div>
                    <div class="widget-chart-content">
                        <div class="widget-subheading">Bono</div>
-                       <div class="widget-numbers text-success">$<span><?php echo number_format($calculoBono2, 2, '.', ',') ?></span></div>
+                       <div class="widget-numbers text-success">$<span><?php echo number_format($fbt_b_ma2, 2, '.', ',') ?></span></div>
                    </div>
                </div>
-           </div>
+           </div> 
                 </div>
                 <div class="text-center d-block p-3 card-footer">
 
                 </div>
             </div>
-           
-           <!-- REACTIVACION CAMPAÑA -->
-           <div class="mb-3 card">
+           <!-- REACTIVACION CAMPAÑA-->
+                <div class="mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
@@ -3385,20 +3765,19 @@ endif;
                        <div class="widget-numbers text-success">$<span><?php echo number_format($fbc_b_ma2, 2, '.', ',') ?></span></div>
                    </div>
                </div>
-           </div>
+           </div> 
                 </div>
                 <div class="text-center d-block p-3 card-footer">
 
                 </div>
-            </div>           
+            </div>
            <!-- FIN REACTIVACION CAMPAÑA -->
-           
-           <!-- TOTAL SEMANA ANTERIOR 1-->
+           <!-- TOTAL SEMANA ANTERIOR 2-->
                <div class="mb-3 card" style="background: #e0f3ff">
            <div class="card-header-tab card-header" style="background: #e0f3ff">
                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                 Total semana 1
+                 Total semana 2
                </div>
            </div>
            <div class="no-gutters row">
@@ -3441,8 +3820,8 @@ endif;
            <div class="text-center d-block p-3 card-footer" style="background: #e0f3ff">
            </div>
        </div>
-            <!-- FIN TOTAL SEMANA ANTERIOR 1-->
-           <!-- COBRANZA -->
+            <!-- FIN TOTAL SEMANA ANTERIOR 2-->
+            <!-- COBRANZA -->
                  <div class="mb-3 card">
                  <div class="card-header-tab card-header">
                      <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
@@ -3461,7 +3840,7 @@ endif;
                                  <i class="lnr-pie-chart text-white opacity-8"></i>
                        </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Porcentaje Semana 1</div>
+                            <div class="widget-subheading">Porcentaje Semana 2</div>
                             <div class="widget-numbers"><?php echo ($ec_w2_ma)  ?>%</div>
                             <div class="widget-description opacity-8 text-focus">
                                                 <div class="d-inline  pr-1">
@@ -3513,7 +3892,7 @@ endif;
                  </div>                     
              </div>
            <!-- //COBRANZA-->
-           <!-- TOTAL de BONO -->
+            <!-- TOTAL de BONO -->
                  <div class="mb-3 card">
                  <div class="card-header-tab card-header">
                      <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
@@ -3529,7 +3908,7 @@ endif;
                             <i class="pe-7s-piggy text-white"></i>
                         </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono Semana 1</div>
+                            <div class="widget-subheading">Bono Semana 2</div>
                             <div class="widget-numbers">$<span><?php echo number_format($total_b_ma_s2, 2, '.', ',')  ?></span></div> 
                         </div>
                     </div>                 
@@ -3555,7 +3934,7 @@ endif;
                        </div>
                         <div class="widget-chart-content">
                             <div class="widget-subheading">Bono Total</div>
-                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s2 +$ec_cobranza_bono2_ma), 2, '.', ',')  ?></span></div>                            
+                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s3 +$ec_cobranza_bono2_ma), 2, '.', ',')  ?></span></div>                            
                         </div>
                     </div>                     
                 </div>
@@ -3566,15 +3945,17 @@ endif;
              </div>
            <!-- // BONO TOTAL -->
            
+           
        </div>
-       <!-- SEMANA 2 -->
-       <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
+       
+       <!-- SEMANA 3 -->
+         <div class="tab-pane tabs-animation fade" id="tab-content-7" role="tabpanel">
            <!-- NUEVOS -->
             <div class="mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Nuevos
+                    Créditos Nuevos 
                 </div>
             </div>
 
@@ -3605,7 +3986,7 @@ endif;
                 </div>
 
                 <div class="col-sm-12 col-md-4 col-xl-4">
-                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                         <div class="icon-wrapper rounded-circle">
                             <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                             <i class="pe-7s-piggy text-white"></i></div>
@@ -3655,7 +4036,7 @@ endif;
                 <div class="divider m-0 d-md-none d-sm-block"></div>                            
             </div>
             <div class="col-sm-12 col-md-4 col-xl-4">
-              <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                     <div class="icon-wrapper rounded-circle">
                         <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                         <i class="pe-7s-piggy text-white"></i></div>
@@ -3705,13 +4086,13 @@ endif;
                <div class="divider m-0 d-md-none d-sm-block"></div>
            </div>
            <div class="col-sm-12 col-md-4 col-xl-4">
-              <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                    <div class="icon-wrapper rounded-circle">
                        <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                        <i class="pe-7s-piggy text-white"></i></div>
                    <div class="widget-chart-content">
                        <div class="widget-subheading">Bono</div>
-                       <div class="widget-numbers text-success">$<span><?php echo number_format($fbt_b_ma3, 2, '.', ',') ?></span></div>
+                       <div class="widget-numbers text-success">$<span><?php echo number_format($calculoBono3, 2, '.', ',') ?></span></div>
                    </div>
                </div>
            </div> 
@@ -3720,8 +4101,8 @@ endif;
 
                 </div>
             </div>
-           <!-- REACTIVACION CAMPAÑA-->
-                <div class="mb-3 card">
+           <!-- REACTIVACION CAMPAÑA -->
+            <div class="mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
@@ -3755,7 +4136,7 @@ endif;
                <div class="divider m-0 d-md-none d-sm-block"></div>
            </div>
            <div class="col-sm-12 col-md-4 col-xl-4">
-              <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                    <div class="icon-wrapper rounded-circle">
                        <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                        <i class="pe-7s-piggy text-white"></i></div>
@@ -3770,13 +4151,14 @@ endif;
 
                 </div>
             </div>
-           <!-- FIN REACTIVACION CAMPAÑA -->
-           <!-- TOTAL SEMANA ANTERIOR 2-->
+           <!-- FIN REACTIVACION CAMPAÑA-->
+           
+           <!-- TOTAL SEMANA ANTERIOR 3-->
                <div class="mb-3 card" style="background: #e0f3ff">
            <div class="card-header-tab card-header" style="background: #e0f3ff">
                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                 Total semana 2
+                 Total semana 3
                </div>
            </div>
            <div class="no-gutters row">
@@ -3819,7 +4201,7 @@ endif;
            <div class="text-center d-block p-3 card-footer" style="background: #e0f3ff">
            </div>
        </div>
-            <!-- FIN TOTAL SEMANA ANTERIOR 2-->
+            <!-- FIN TOTAL SEMANA ANTERIOR 3-->
             <!-- COBRANZA -->
                  <div class="mb-3 card">
                  <div class="card-header-tab card-header">
@@ -3839,7 +4221,7 @@ endif;
                                  <i class="lnr-pie-chart text-white opacity-8"></i>
                        </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Porcentaje Semana 2</div>
+                            <div class="widget-subheading">Porcentaje Semana 3</div>
                             <div class="widget-numbers"><?php echo ($ec_w3_ma)  ?>%</div>
                             <div class="widget-description opacity-8 text-focus">
                                                 <div class="d-inline  pr-1">
@@ -3907,7 +4289,7 @@ endif;
                             <i class="pe-7s-piggy text-white"></i>
                         </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono Semana 2</div>
+                            <div class="widget-subheading">Bono Semana 3</div>
                             <div class="widget-numbers">$<span><?php echo number_format($total_b_ma_s3, 2, '.', ',')  ?></span></div> 
                         </div>
                     </div>                 
@@ -3944,17 +4326,16 @@ endif;
              </div>
            <!-- // BONO TOTAL -->
            
-           
        </div>
        
-       <!-- SEMANA 3 -->
-         <div class="tab-pane tabs-animation fade" id="tab-content-7" role="tabpanel">
+       <!-- SEMANA 4 -->
+         <div class="tab-pane tabs-animation fade <?php if($nb_c_ma5 == 0): ?>show active<?php endif; ?>" id="tab-content-8" role="tabpanel">
            <!-- NUEVOS -->
             <div class="mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Nuevos 
+                    Créditos Nuevos
                 </div>
             </div>
 
@@ -3985,7 +4366,7 @@ endif;
                 </div>
 
                 <div class="col-sm-12 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
                         <div class="icon-wrapper rounded-circle">
                             <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                             <i class="pe-7s-piggy text-white"></i></div>
@@ -4078,7 +4459,7 @@ endif;
                        <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
                        <i class="pe-7s-cash text-white"></i></div>
                    <div class="widget-chart-content">
-                       <div class="widget-subheading">Monto Dispersado</div>
+                       <div class="widget-subheading">Monto Dispersado</div>  
                        <div class="widget-numbers">$<span><?php echo number_format($fbt_mo_ma4, 2, '.', ',') ?></span></div>                                       
                    </div>
                </div>
@@ -4101,7 +4482,7 @@ endif;
                 </div>
             </div>
            <!-- REACTIVACION CAMPAÑA -->
-            <div class="mb-3 card">
+           <div class="mb-3 card">
             <div class="card-header-tab card-header">
                 <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                     <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
@@ -4152,12 +4533,12 @@ endif;
             </div>
            <!-- FIN REACTIVACION CAMPAÑA-->
            
-           <!-- TOTAL SEMANA ANTERIOR 3-->
+           <!-- TOTAL SEMANA ANTERIOR 4-->
                <div class="mb-3 card" style="background: #e0f3ff">
            <div class="card-header-tab card-header" style="background: #e0f3ff">
                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                 Total semana 3
+                 Total semana 4
                </div>
            </div>
            <div class="no-gutters row">
@@ -4191,7 +4572,7 @@ endif;
                            <div class="icon-wrapper-bg opacity-9 bg-success"></div>
                            <i class="pe-7s-piggy text-white"></i></div>
                        <div class="widget-chart-content">
-                           <div class="widget-subheading">Total Bono Semanal</div>
+                           <div class="widget-subheading">Total Bono Semanal</div> 
                            <div class="widget-numbers text-success">$<span><?php echo number_format($total_b_ma_s4, 2, '.', ',') ?></span></div>
                        </div>
                    </div>
@@ -4200,7 +4581,6 @@ endif;
            <div class="text-center d-block p-3 card-footer" style="background: #e0f3ff">
            </div>
        </div>
-            <!-- FIN TOTAL SEMANA ANTERIOR 3-->
             <!-- COBRANZA -->
                  <div class="mb-3 card">
                  <div class="card-header-tab card-header">
@@ -4220,7 +4600,7 @@ endif;
                                  <i class="lnr-pie-chart text-white opacity-8"></i>
                        </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Porcentaje Semana 3</div>
+                            <div class="widget-subheading">Porcentaje Semana 5</div>
                             <div class="widget-numbers"><?php echo ($ec_w4_ma)  ?>%</div>
                             <div class="widget-description opacity-8 text-focus">
                                                 <div class="d-inline  pr-1">
@@ -4288,7 +4668,7 @@ endif;
                             <i class="pe-7s-piggy text-white"></i>
                         </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono Semana 3</div>
+                            <div class="widget-subheading">Bono Semana 4</div>
                             <div class="widget-numbers">$<span><?php echo number_format($total_b_ma_s4, 2, '.', ',')  ?></span></div> 
                         </div>
                     </div>                 
@@ -4313,387 +4693,8 @@ endif;
                                  <i class="pe-7s-piggy text-white opacity-8"></i>
                        </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono Total</div>
-                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s4 +$ec_cobranza_bono4_ma), 2, '.', ',')  ?></span></div>                            
-                        </div>
-                    </div>                     
-                </div>
-            </div>
-                 <div class="text-center d-block p-3 card-footer">
-                     
-                 </div>                     
-             </div>
-           <!-- // BONO TOTAL -->
-           
-       </div>
-       
-       <!-- SEMANA 4 -->
-         <div class="tab-pane tabs-animation fade <?php if($nb_c_ma5 == 0): ?>show active<?php endif; ?>" id="tab-content-8" role="tabpanel">
-           <!-- NUEVOS -->
-            <div class="mb-3 card">
-            <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Nuevos
-                </div>
-            </div>
-
-                <div class="no-gutters row">
-                      <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                        <div class="icon-wrapper rounded-circle">
-                            <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
-                            <i class="pe-7s-wallet text-dark opacity-8"></i></div>
-                            <div class="widget-chart-content">
-                                <div class="widget-subheading">Cantidad</div>
-                                <div class="widget-numbers"><?php echo $nb_c_ma5 ?></div>                                         
-                            </div>                                     
-                    </div>
-                    <div class="divider m-0 d-md-none d-sm-block"></div>                             
-                </div>
-                <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                        <div class="icon-wrapper rounded-circle">
-                            <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
-                            <i class="pe-7s-cash text-white"></i></div>
-                            <div class="widget-chart-content">
-                                <div class="widget-subheading">Monto Dispersado</div>
-                                <div class="widget-numbers">$<span><?php echo number_format($nb_mo_ma5, 2, '.', ',')  //?></span></div>
-                            </div>
-                    </div>
-                    <div class="divider m-0 d-md-none d-sm-block"></div>                             
-                </div>
-
-                <div class="col-sm-12 col-md-4 col-xl-4">
-                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                        <div class="icon-wrapper rounded-circle">
-                            <div class="icon-wrapper-bg opacity-9 bg-success"></div>
-                            <i class="pe-7s-piggy text-white"></i></div>
-                            <div class="widget-chart-content">
-                                <div class="widget-subheading">Bono</div>
-                                <div class="widget-numbers text-success">$<span><?php echo number_format($nb_b_ma5, 2, '.', ',') ?></span></div>
-                            </div>
-                    </div>
-                </div>
-                </div>
-                <div class="text-center d-block p-3 card-footer">
-
-                </div>
-            </div>
-           <!-- RENOVACION -->
-           <div class="mb-3 card">
-            <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Renovación
-                </div>
-            </div>
-
-                <div class="no-gutters row">
-                    <div class="col-sm-6 col-md-4 col-xl-4">
-                <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                    <div class="icon-wrapper rounded-circle">
-                        <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
-                        <i class="pe-7s-wallet text-dark opacity-8"></i></div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Cantidad</div>
-                            <div class="widget-numbers"><?php echo $pb_c_ma5 ?></div>                                        
-                        </div>                                    
-                </div>
-                <div class="divider m-0 d-md-none d-sm-block"></div>
-                </div>
-            <div class="col-sm-6 col-md-4 col-xl-4">
-                <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                    <div class="icon-wrapper rounded-circle">
-                        <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
-                        <i class="pe-7s-cash text-white"></i></div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Monto Dispersado</div>
-                            <div class="widget-numbers">$<span><?php echo number_format($pb_mo_ma5, 2, '.', ',') ?></span></div>
-                        </div>
-                </div>
-                <div class="divider m-0 d-md-none d-sm-block"></div>                            
-            </div>
-            <div class="col-sm-12 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                    <div class="icon-wrapper rounded-circle">
-                        <div class="icon-wrapper-bg opacity-9 bg-success"></div>
-                        <i class="pe-7s-piggy text-white"></i></div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono</div>
-                            <div class="widget-numbers text-success">$<span><?php echo number_format($pb_b_ma5, 2, '.', ',') ?></span></div>
-                        </div>
-                </div>
-            </div>
-                </div>
-                <div class="text-center d-block p-3 card-footer">
-
-                </div>
-            </div>
-           <!-- REACTIVACION -->
-           <div class="mb-3 card">
-            <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Reactivación Tradicional
-                </div>
-            </div>
-
-                <div class="no-gutters row">
-                    <div class="col-sm-6 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                   <div class="icon-wrapper rounded-circle">
-                       <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
-                       <i class="pe-7s-wallet text-dark opacity-8"></i></div>
-                   <div class="widget-chart-content">
-                       <div class="widget-subheading">Cantidad</div>
-                       <div class="widget-numbers"><?php echo $fbt_c_ma5 ?></div>                                            
-                   </div>
-               </div>
-               <div class="divider m-0 d-md-none d-sm-block"></div>
-           </div>
-           <div class="col-sm-6 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                   <div class="icon-wrapper rounded-circle">
-                       <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
-                       <i class="pe-7s-cash text-white"></i></div>
-                   <div class="widget-chart-content">
-                       <div class="widget-subheading">Monto Dispersado</div>  
-                       <div class="widget-numbers">$<span><?php echo number_format($fbt_mo_ma5, 2, '.', ',') ?></span></div>                                       
-                   </div>
-               </div>
-               <div class="divider m-0 d-md-none d-sm-block"></div>
-           </div>
-           <div class="col-sm-12 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                   <div class="icon-wrapper rounded-circle">
-                       <div class="icon-wrapper-bg opacity-9 bg-success"></div>
-                       <i class="pe-7s-piggy text-white"></i></div>
-                   <div class="widget-chart-content">
-                       <div class="widget-subheading">Bono</div>
-                       <div class="widget-numbers text-success">$<span><?php echo number_format($calculoBono5, 2, '.', ',') ?></span></div>
-                   </div>
-               </div>
-           </div> 
-                </div>
-                <div class="text-center d-block p-3 card-footer">
-
-                </div>
-            </div>
-           <!-- REACTIVACION CAMPAÑA -->
-           <div class="mb-3 card">
-            <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                    <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                    Créditos Reactivación Campaña
-                </div>
-            </div>
-
-                <div class="no-gutters row">
-                    <div class="col-sm-6 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                   <div class="icon-wrapper rounded-circle">
-                       <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
-                       <i class="pe-7s-wallet text-dark opacity-8"></i></div>
-                   <div class="widget-chart-content">
-                       <div class="widget-subheading">Cantidad</div>
-                       <div class="widget-numbers"><?php echo $fbc_c_ma5 ?></div>                                            
-                   </div>
-               </div>
-               <div class="divider m-0 d-md-none d-sm-block"></div>
-           </div>
-           <div class="col-sm-6 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                   <div class="icon-wrapper rounded-circle">
-                       <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
-                       <i class="pe-7s-cash text-white"></i></div>
-                   <div class="widget-chart-content">
-                       <div class="widget-subheading">Monto Dispersado</div>
-                       <div class="widget-numbers">$<span><?php echo number_format($fbc_mo_ma5, 2, '.', ',') ?></span></div>                                       
-                   </div>
-               </div>
-               <div class="divider m-0 d-md-none d-sm-block"></div>
-           </div>
-           <div class="col-sm-12 col-md-4 col-xl-4">
-               <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                   <div class="icon-wrapper rounded-circle">
-                       <div class="icon-wrapper-bg opacity-9 bg-success"></div>
-                       <i class="pe-7s-piggy text-white"></i></div>
-                   <div class="widget-chart-content">
-                       <div class="widget-subheading">Bono</div>
-                       <div class="widget-numbers text-success">$<span><?php echo number_format($fbc_b_ma5, 2, '.', ',') ?></span></div>
-                   </div>
-               </div>
-           </div> 
-                </div>
-                <div class="text-center d-block p-3 card-footer">
-
-                </div>
-            </div>
-           <!-- FIN REACTIVACION CAMPAÑA-->
-           
-           <!-- TOTAL SEMANA ANTERIOR 4-->
-               <div class="mb-3 card" style="background: #e0f3ff">
-           <div class="card-header-tab card-header" style="background: #e0f3ff">
-               <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                   <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                 Total semana 4
-               </div>
-           </div>
-           <div class="no-gutters row">
-               <div class="col-sm-6 col-md-4 col-xl-4">
-                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                           <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
-                           <i class="pe-7s-wallet text-dark opacity-8"></i></div>
-                       <div class="widget-chart-content">
-                           <div class="widget-subheading">Cantidad</div>
-                           <div class="widget-numbers"><?php echo $total_c_ma_s5 ?></div>                                
-                       </div>
-                   </div>
-                   <div class="divider m-0 d-md-none d-sm-block"></div>
-               </div>
-               <div class="col-sm-6 col-md-4 col-xl-4">
-                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                           <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
-                           <i class="pe-7s-cash text-white"></i></div>
-                       <div class="widget-chart-content">
-                           <div class="widget-subheading">Monto Dispersado</div>
-                           <div class="widget-numbers">$<span><?php echo number_format($total_mo_ma_s5, 2, '.', ',') ?></span></div>                                        
-                       </div>
-                   </div>
-                   <div class="divider m-0 d-md-none d-sm-block"></div>
-               </div>
-               <div class="col-sm-12 col-md-4 col-xl-4">
-                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                           <div class="icon-wrapper-bg opacity-9 bg-success"></div>
-                           <i class="pe-7s-piggy text-white"></i></div>
-                       <div class="widget-chart-content">
-                           <div class="widget-subheading">Total Bono Semanal</div> 
-                           <div class="widget-numbers text-success">$<span><?php echo number_format($total_b_ma_s5, 2, '.', ',') ?></span></div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-           <div class="text-center d-block p-3 card-footer" style="background: #e0f3ff">
-           </div>
-       </div>
-            <!-- COBRANZA -->
-                 <div class="mb-3 card">
-                 <div class="card-header-tab card-header">
-                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                         <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                       Cobranza 1 - 7
-                     </div>
-                 </div>                 
-            <div class="no-gutters row">
-                <?php 
-               
-                ?>
-                 <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                                 <div class="icon-wrapper-bg opacity-10 bg-info"></div>
-                                 <i class="lnr-pie-chart text-white opacity-8"></i>
-                       </div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Porcentaje Semana 5</div>
-                            <div class="widget-numbers"><?php echo ($ec_w4_ma)  ?>%</div>
-                            <div class="widget-description opacity-8 text-focus">
-                                                <div class="d-inline  pr-1">
-                                                    <!--<i class="fa fa-angle-down"></i>-->
-                                                    <span class="pl-1">Bono</span>
-                                                </div>
-                                               <?php echo number_format($ec_cobranza_bono5_ma, 2, '.', ',') ?>
-                                            </div>
-                             
-                        </div>
-                    </div>
-                    <div class="divider m-0 d-md-none d-sm-block">
-                       
-                    </div>                        
-                </div>
-              
-                <div class="col-sm-6 col-md-4 col-xl-4"></div>
-                <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                                <div class="icon-wrapper-bg opacity-10 bg-success"></div>
-                                 <i class="pe-7s-piggy text-white opacity-8"></i>
-                       </div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Acumulado</div>
-                            <div class="widget-numbers">$<span><?php 
-                            $ec_cobranza_total_ma=0;                            
-                           if($ec_w5_ma != ""){                               
-                               $ec_cobranza_total_ma = $ec_cobranza_bono4_ma;                              
-                           } echo number_format(($ec_cobranza_total_ma), 2, '.', ',')  
-                                    ?></span></div>
-                            <div class="widget-description opacity-8 text-focus">
-                                                <div class="d-inline pr-1">
-                                                    <!--<i class="fa fa-angle-down"></i>-->                                                  
-                                                </div>
-                                            </div>
-                        </div>
-                    </div>
-                    <div class="divider m-0 d-md-none d-sm-block">
-                        
-                    </div>                        
-                </div>
-                
-                              
-                
-            </div>
-                 <div class="text-center d-block p-3 card-footer">
-                     
-                 </div>                     
-             </div>
-           <!-- //COBRANZA-->
-            <!-- TOTAL de BONO -->
-                 <div class="mb-3 card">
-                 <div class="card-header-tab card-header">
-                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                         <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                       Total Semana + Cobranza
-                     </div>
-                 </div>                 
-            <div class="no-gutters row">
-               <div class="col-sm-6 col-md-4 col-xl-4">
-                   <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                        <div class="icon-wrapper rounded-circle">
-                            <div class="icon-wrapper-bg opacity-9 bg-success"></div>
-                            <i class="pe-7s-piggy text-white"></i>
-                        </div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono Semana 4</div>
-                            <div class="widget-numbers">$<span><?php echo number_format($total_b_ma_s5, 2, '.', ',')  ?></span></div> 
-                        </div>
-                    </div>                 
-                </div>
-              
-                <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                                <div class="icon-wrapper-bg opacity-10 bg-success"></div>
-                                 <i class="pe-7s-piggy text-white opacity-8"></i>
-                       </div>
-                        <div class="widget-chart-content">
-                            <div class="widget-subheading">Cobranza</div>
-                            <div class="widget-numbers">$<span><?php echo number_format(($ec_cobranza_bono5_ma), 2, '.', ',')  ?></span></div>                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-xl-4">
-                       <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
-                       <div class="icon-wrapper rounded-circle">
-                                <div class="icon-wrapper-bg opacity-10 bg-success"></div>
-                                 <i class="pe-7s-piggy text-white opacity-8"></i>
-                       </div>
-                        <div class="widget-chart-content">
                             <div class="widget-subheading">Bono Total</div>              //error
-                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s5 +$ec_cobranza_bono5_ma), 2, '.', ',')  ?></span></div>                            
+                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s4 +$ec_cobranza_bono4_ma), 2, '.', ',')  ?></span></div>                            
                         </div>
                     </div>                     
                 </div>
@@ -4982,7 +4983,7 @@ endif;
                                  <i class="lnr-pie-chart text-white opacity-8"></i>
                        </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Porcentaje Semana 5</div>
+                            <div class="widget-subheading">Porcentaje Semana 4</div>
                             <div class="widget-numbers"><?php echo ($ec_w5_ma)  ?>%</div>
                             <div class="widget-description opacity-8 text-focus">
                                                 <div class="d-inline  pr-1">
@@ -5011,7 +5012,7 @@ endif;
                             <div class="widget-numbers">$<span><?php 
                             $ec_cobranza_total_ma=0;                            
                            if($ec_w5_ma != ""){                               
-                               $ec_cobranza_total_ma = $ec_cobranza_bono5_ma;                              
+                               $ec_cobranza_total_ma = $ec_cobranza_bono4_ma;                              
                            } echo number_format(($ec_cobranza_total_ma), 2, '.', ',')  
                                     ?></span></div>
                             <div class="widget-description opacity-8 text-focus">
