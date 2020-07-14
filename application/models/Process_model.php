@@ -22,8 +22,8 @@ class Process_model extends CI_Model{
       $this->db->from("credito cred,  prospeccion_solicitud sol");
       $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
       $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
-      $this->db->where("cred.fecha_apertura >=",$fi);
-      $this->db->where("cred.fecha_apertura <=",$ff);
+      $this->db->where("cred.fecha_inicio >=",$fi);
+      $this->db->where("cred.fecha_inicio <=",$ff);
       $this->db->where("cred.status_activo <>", 'Cancelado');
       $this->db->where("sol.id_promotor",$id_p);
       $this->db->where_in("sol.id_perfil_captura",$perfil); 
@@ -46,8 +46,8 @@ class Process_model extends CI_Model{
       $this->db->from("credito cred,  prospeccion_solicitud sol");
       $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
       $this->db->where(" cred.id_sucursal",$suc);
-      $this->db->where("cred.fecha_apertura >=",$fi);
-      $this->db->where("cred.fecha_apertura <=",$ff);
+      $this->db->where("cred.fecha_inicio >=",$fi);
+      $this->db->where("cred.fecha_inicio <=",$ff);
       $this->db->where("cred.status_activo <>", 'Cancelado');
       if(!empty($perfil)):
        $this->db->where_in("sol.id_perfil_captura",$perfil);

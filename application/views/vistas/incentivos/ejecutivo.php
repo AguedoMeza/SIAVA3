@@ -3934,7 +3934,7 @@ endif;
                        </div>
                         <div class="widget-chart-content">
                             <div class="widget-subheading">Bono Total</div>
-                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s3 +$ec_cobranza_bono2_ma), 2, '.', ',')  ?></span></div>                            
+                            <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s2 +$ec_cobranza_bono2_ma), 2, '.', ',')  ?></span></div>                            
                         </div>
                     </div>                     
                 </div>
@@ -4693,7 +4693,7 @@ endif;
                                  <i class="pe-7s-piggy text-white opacity-8"></i>
                        </div>
                         <div class="widget-chart-content">
-                            <div class="widget-subheading">Bono Total</div>              //error
+                            <div class="widget-subheading">Bono Total</div>             
                             <div class="widget-numbers">$<span><?php echo number_format(($total_b_ma_s4 +$ec_cobranza_bono4_ma), 2, '.', ',')  ?></span></div>                            
                         </div>
                     </div>                     
