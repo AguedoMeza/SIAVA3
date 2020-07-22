@@ -637,6 +637,8 @@ $total_mo_ma_s5= $nb_mo_ma5+$pb_mo_ma5+$fb_mo_ma5;
 $total_b_ma_s5 = $nb_b_ma5 + $pb_b_ma5 + $calculoBono5 + $fbc_b_ma5;
 
 
+
+
 /*
  * 
  * cobranza
