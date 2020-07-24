@@ -181,13 +181,11 @@ class Auth_model extends CI_Model{
   
  public function check_promotor($id=0,$n='',$p='',$m=''){
     
-       $this->db->select('b.id_promotor,c.id_user AS id_user_promotor,b.promotor');
+       $this->db->select("DISTINCT IFNULL((select id_promotor from core_promotores where id_user = '".$id."' limit 1),100000) as id_promotor, 
+IFNULL((select id_user from administracion_usuarios 
+where num_empleado = (select numero_nomina from core_promotores where id_user = '".$id."' limit 1)
+and id_user = '".$id."' limit 1),100000) as id_user_promotor, IFNULL((select promotor from core_promotores where id_user = '".$id."' limit 1),100000) as promotor");
        $this->db->from('prospeccion_solicitud a');
-       $this->db->join('core_promotores b','a.id_promotor = b.id_promotor','INNER');
-       $this->db->join('administracion_usuarios c','b.numero_nomina = c.num_empleado','LEFT');
-       $this->db->where('c.id_user',$id);
-       $this->db->where('b.status_activo','Si');
-       $this->db->limit(1);
        $query = $this->db->get();
        $nombre_us = trim($p).' '.trim($m).' '.trim($n);
        $name = trim($n).' '.trim($p).' '.trim($m);       
