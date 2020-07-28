@@ -31,6 +31,12 @@ public function __construct(){
  *  
  */   
 public function index(){
+
+   //$this->load->view('vistas/rh/bootgrid');
+
+   //$data['student_data'] = $this->export_csv_model->fetch_data();
+  //$this->load->view('vistas/rh/export_csv', $data);
+   $this->data['gerente_info'] = $this->process_model->fetch_data();
     
     $fecha_hoy = date('Y-m-01');
     $fecha_fin = date('Y-m-t');
@@ -274,7 +280,13 @@ public function index(){
        endif;
     
         if($rol != 21 && $rol != 5):
+<<<<<<< Updated upstream
              $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+=======
+            // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+            // $this->data['vista'] = 'vistas/rh/bootgrid';
+          $this->data['vista'] = 'vistas/rh/incentivos';
+>>>>>>> Stashed changes
         elseif($rol==5):
             $this->data['vista'] = 'vistas/incentivos/gerente';
            else:
@@ -308,6 +320,40 @@ function getAllDaysInAMonth($year, $month, $day = 'Monday', $daysError = 3) {
   
     return $days;
 }
+
+function export()
+ {
+  $file_name = 'ejecutivos_incentivos'.date('Ymd').'.csv'; 
+     header("Content-Description: File Transfer"); 
+     header("Content-Disposition: attachment; filename=$file_name"); 
+     header("Content-Type: application/csv;");
+   
+     // get data 
+     $student_data = $this->export_csv_model->fetch_data();
+
+     // file creation 
+     $file = fopen('php://output', 'w');
+ 
+     $header = array("#Empleado","Nombre","Sucursal","NB BONO","PB BONO","FBT BONO"); 
+     fputcsv($file, $header);
+     foreach ($student_data->result_array() as $key => $value)
+     { 
+       fputcsv($file, $value); 
+     }
+     fclose($file); 
+     exit; 
+ }
+
+ //parte del DataTable
+ function rhTable()
+ {
+   echo $this->process_model->fetch_data();
+ }
+
+ //fin DataTable
+
+ 
+
 
 /*
  * 

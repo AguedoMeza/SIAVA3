@@ -861,8 +861,17 @@ INNER JOIN administracion_usuarios U ON (U.id_user = P.id_user);*/
     $query = $this->db->get();
     return $query->result();
   }
+  
+  public function fetch_data()
+  {
+    $this->db->select("num_empleado, nombre, id_sucursal, nb_bono, pb_bono, pbc_bono, fbc_bono");
+    $this->db->from('avance_incentivos.pago_ejecom');
+    $this->db->where("login",'REYNA.MARTINEZ');
+    $this->db->get();
+   
+  }
 
- 
+  
 
 
  
