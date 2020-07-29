@@ -94,13 +94,11 @@ endif;
           <div class="col-sm-4">
               <select id="sucursal" name="sucursal" class="form-control">
                    <option value="">Selecciona sucursal</option>
--                  <?php if(!empty( $this->data['sucursales'])): foreach ( $this->data['sucursales'] as $suc): ?>
--                  <option value="<?php echo  $suc->id_sucursal ?>"><?php echo $suc->id_sucursal.' '.$suc->sucursal ?></option>
--                  <?php endforeach;                  endif;?>
-+                   <option value="1">1</option>
-+                    <option value="1">2</option>
-+                                 
-               </select>
+                  <?php if(!empty( $this->data['sucursales'])): foreach ( $this->data['sucursales'] as $suc): ?>
+                  <option value="<?php echo  $suc->id_sucursal ?>"><?php echo $suc->id_sucursal.' '.$suc->sucursal ?></option>
+                  <?php endforeach;                  
+                  endif;?>
+              </select>
           </div>
       </div>      
           <div class="row">

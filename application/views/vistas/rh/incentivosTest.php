@@ -103,7 +103,7 @@ endif;
         if($hoy >= $sep_fi[0]):
         ?>  
         <?php //echo $semana[($count-$a)]; ?>    
-        <option value="1">Días <?php echo $anioSemana; ?></option>
+        <option value="<?php echo $anioSemana ?>">Días <?php echo $anioSemana; ?></option>
            
         
         <?php       
