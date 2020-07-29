@@ -263,6 +263,7 @@ public function index(){
                * NORMALIDAD MES ANTERIOR
                * 
                */
+              //gerente normalidad mes anterior
               $this->data['gerente_normalidad_ma'] = $this->process_model->normalidad($suc,$fecha_mes_anterior,$lastDayOfMOnth);
               $this->data['bono_normalidad_ma'] =  $this->process_model->bono_normalidad($this->data['gerente_normalidad_ma'][0]->Normalidad);
               
@@ -289,9 +290,17 @@ public function index(){
           $this->data['vista'] = 'vistas/rh/incentivosTest';
 
         elseif($rol==5):
+
            $this->data['vista'] = 'vistas/incentivos/gerente';
            else:
            $this->data['vista'] = 'vistas/auditoria/filtro_auditoria';
+
+             $this->data['vista'] = 'vistas/incentivos/gerente';
+        elseif($rol==5):
+             $this->data['vista'] = 'vistas/incentivos/gerente';
+        else:
+             $this->data['vista'] = 'vistas/rh/filtro_auditoria';
+
        endif;
        
        $this->load->view('layouts/dashboard');
