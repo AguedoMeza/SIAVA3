@@ -82,7 +82,7 @@ endif;
         $i=4;
         $semana = array();
         foreach ($this->data['rango_semana'] as $wk):
-          $semana[] = date('d',strtotime($wk['fi'])).' - '.date('d',strtotime($wk['ff']));
+          $semana[] = date('Y-m-d',strtotime($wk['fi']));
         endforeach; 
         $count = count($semana)-1;    
        
@@ -92,7 +92,7 @@ endif;
             $m = date('m',strtotime($wk['ff']));
 
         //numero de semana en el anio
-          $ddate = $wk['ff'];
+          $ddate = $semana[($count-$a)];
           $date = new DateTime($ddate);
           $week = $date->format("W");
           
@@ -102,8 +102,8 @@ endif;
             //$sep_fi[0]-$a
         if($hoy >= $sep_fi[0]):
         ?>  
-            
-        <option value="1">Días <?php echo $semana[($count-$a)]; ?></option>
+        <?php //echo $semana[($count-$a)]; ?>    
+        <option value="1">Días <?php echo $anioSemana; ?></option>
            
         
         <?php       
