@@ -92,16 +92,18 @@ endif;
             $m = date('m',strtotime($wk['ff']));
 
         //numero de semana en el anio
-          $ddate = "2012-10-18";
-          $duedt = explode("-", $ddate);
-          $date  = mktime(0, 0, 0, $duedt[1], $duedt[2], $duedt[0]);
-          $week  = (int)date('W', $date);
+          $ddate = $wk['ff'];
+          $date = new DateTime($ddate);
+          $week = $date->format("W");
+          
+          $anio = DateTime::createFromFormat("Y-m-d",$ddate);
+          $anioSemana = $anio->format("Y").$week;
           //fin obtencion
-            
+            //$sep_fi[0]-$a
         if($hoy >= $sep_fi[0]):
         ?>  
             
-            <option value="1">Días <?php echo $semana[($count-$a)]; ?></option>
+        <option value="1">Días <?php echo $semana[($count-$a)]; ?></option>
            
         
         <?php       
