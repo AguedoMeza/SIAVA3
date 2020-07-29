@@ -7,6 +7,10 @@
 <!doctype html>
 <html lang="es">
 <head>
+   
+
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="es">
@@ -400,7 +404,7 @@
      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
      <script type="text/javascript" src="<?php echo base_url('public'); ?>/assets/scripts/main_dos.js"></script>     
      <?php if($this->uri->segment(1) == 'auditoria'): ?> 
-     <script type="text/javascript" src="<?php echo base_url('public') ?>/dataTables/datatables.min.js"></script>
+     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>
      <script type="text/javascript" src="<?php echo base_url('public') ?>/dataTables/dataTables.bootstrap4.min.js"></script>
     <!--<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>-->
     <?php endif; ?>
@@ -522,6 +526,45 @@
         }
     }
     
+    function show_table2(){
+        
+        var tipo = $("#bfiltro").val();
+        var id = $("#id_filtro").val();
+        var suc = $("#sucursal").val();
+      //  var count = tipo.length;
+        //alert(count);
+        
+        
+         if(suc != ""){
+           $("#lista_busqueda_tipo").css('display','block');
+             var table = $('#filtro_busqueda_tbl').DataTable();
+                table.destroy();
+         $(document).ready(function() {
+          $('#filtro_busqueda_tbl').DataTable({
+          "ajax": '<?php echo base_url('ajax/busqueda_ejecutivos/') ?>'+id+'/'+tipo+'/'+suc,
+          'paging'      : true,
+       //   'pageLength':5,
+          'lengthChange': false,
+          'searching'   : false,
+          'ordering'    : false,
+          'info'        : false,
+          'responsive': true,
+          'autoWidth'   : false,
+              "oLanguage": {
+                 "sSearch": "Buscar:",
+                    "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+               }
+                }
+        })
+        })
+        
+        }else{
+        swal('','Seleccione una sucursal para iniciar la búsqueda.','error');
+        
+        }
+    }
     
     
     
@@ -992,6 +1035,9 @@ $.ajax({
        <?php endif; ?>
    
     </script>
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 </body>
 </html>
 

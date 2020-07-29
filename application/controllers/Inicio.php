@@ -281,19 +281,26 @@ public function index(){
        endif;
     
         if($rol != 21 && $rol != 5):
-<<<<<<< Updated upstream
-             $this->data['vista'] = 'vistas/incentivos/ejecutivo';
-=======
+
+            // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+
             // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
             // $this->data['vista'] = 'vistas/rh/bootgrid';
-          $this->data['vista'] = 'vistas/rh/incentivos';
->>>>>>> Stashed changes
+         //  $this->data['vista'] = 'vistas/auditoria/filtro_auditoria';
+          $this->data['vista'] = 'vistas/rh/incentivosTest';
+
         elseif($rol==5):
+
+           $this->data['vista'] = 'vistas/incentivos/gerente';
+           else:
+           $this->data['vista'] = 'vistas/auditoria/filtro_auditoria';
+
              $this->data['vista'] = 'vistas/incentivos/gerente';
         elseif($rol==5):
              $this->data['vista'] = 'vistas/incentivos/gerente';
         else:
              $this->data['vista'] = 'vistas/rh/filtro_auditoria';
+
        endif;
        
        $this->load->view('layouts/dashboard');
