@@ -14,6 +14,13 @@ if(!empty( $this->data['sucursales'])):
 endif;
 
 ?>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
@@ -86,11 +93,14 @@ endif;
           <label for="exampleEmail" class="col-sm-2 col-form-label">Sucursal</label>
           <div class="col-sm-4">
               <select id="sucursal" name="sucursal" class="form-control">
-                  <option value="">Selecciona sucursal</option>
-                  <?php if(!empty( $this->data['sucursales'])): foreach ( $this->data['sucursales'] as $suc): ?>
-                  <option value="<?php echo  $suc->id_sucursal ?>"><?php echo $suc->id_sucursal.' '.$suc->sucursal ?></option>
-                  <?php endforeach;                  endif;?>
-              </select>
+                   <option value="">Selecciona sucursal</option>
+-                  <?php if(!empty( $this->data['sucursales'])): foreach ( $this->data['sucursales'] as $suc): ?>
+-                  <option value="<?php echo  $suc->id_sucursal ?>"><?php echo $suc->id_sucursal.' '.$suc->sucursal ?></option>
+-                  <?php endforeach;                  endif;?>
++                   <option value="1">1</option>
++                    <option value="1">2</option>
++                                 
+               </select>
           </div>
       </div>      
           <div class="row">
