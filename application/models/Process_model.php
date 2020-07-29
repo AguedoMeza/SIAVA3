@@ -320,7 +320,36 @@ where ccs.id_credito = cred.id_credito and ccs.id_cierre = (select max(id_cierre
     return $query->result();
   }  
   
-  
+  public function get_records_filtro_ejecutivos($start = 1, $length = 1, $column_order, $column_direction, $search = false,$id=0,$filtro='',$suc=0) {
+   
+    $start = ((($start > 0 ? $start : 1) - 1) * $length);
+    $query = $this->db
+            ->distinct()
+            ->select("anio_semana,num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono")
+            ->from('avance_incentivos.pago_ejecom')
+            ->where('anio_semana', '202030');
+           
+              $query->limit($length, $start)           
+                    ->order_by($column_order, $column_direction);
+                  
+    if (!empty($search)) {
+        
+        $search_terms = explode(" ", $search['value']);
+        foreach ($search_terms as $term) {
+            if (!empty($term)) {
+                
+                $query = $query->or_like('cred.id_credito', $term, 'both')
+                        ->or_like('cred.id_producto', $term, 'both')
+                        ->or_like('cred.id_sucursal', $term, 'both')
+                        ->or_like('cdd.calle', $term, 'both')
+                        ->or_like('cdp.nombre_razon_social', $term, 'both')
+                        ->or_like('cdl.empresa', $term, 'both');
+            }            
+         }
+    }
+    $query = $query->get();
+    return $query->result();
+  }  
  /*
   * 
   * PRE SOLICITUDES
@@ -864,7 +893,7 @@ INNER JOIN administracion_usuarios U ON (U.id_user = P.id_user);*/
   
   public function fetch_data()
   {
-    $this->db->select("num_empleado, nombre, id_sucursal, nb_bono, pb_bono, pbc_bono, fbc_bono");
+    $this->db->select("num_empleado, nombre, id_sucursal, nb_bono, pb_bono, fbc_bono");
     $this->db->from('avance_incentivos.pago_ejecom');
     $this->db->where("login",'REYNA.MARTINEZ');
     $this->db->get();
