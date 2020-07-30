@@ -323,7 +323,7 @@ where ccs.id_credito = cred.id_credito and ccs.id_cierre = (select max(id_cierre
     $start = ((($start > 0 ? $start : 1) - 1) * $length);
     $query = $this->db
             ->distinct()
-            ->select("anio_semana,num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono")
+            ->select("num_empleado,nombre,id_sucursal,nb_bono,pb_bono,fb_bono,fbc_bono,bono_colocacion,cobranza1_7_bono,bono_pagar")
             ->from('avance_incentivos.pago_ejecom')
             ->where('anio_semana',$suc);
            
@@ -891,7 +891,7 @@ INNER JOIN administracion_usuarios U ON (U.id_user = P.id_user);*/
   
   public function getUserDetails($anio_semana=''){
     $response = array();
-    $this->db->select("num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono");
+    $this->db->select("num_empleado,nombre,id_sucursal,nb_bono,pb_bono,fb_bono,fbc_bono,bono_colocacion,cobranza1_7_bono,bono_pagar");
     $this->db->from('avance_incentivos.pago_ejecom');
     $this->db->where("anio_semana",$anio_semana);
     $q = $this->db->get();

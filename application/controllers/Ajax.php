@@ -97,6 +97,9 @@ class Ajax extends MY_Controller {
             4 => "pb_bono",
             5 => "fb_bono",
             6 => "fbc_bono",
+            7 => "bono_colocacion",
+            8 => "cobranza1_7_bono",
+            9 => "bono_pagar",
         );
 
         $search = $this->input->get('search');
@@ -138,6 +141,9 @@ class Ajax extends MY_Controller {
             $infoArray[4] = $row->pb_bono;
             $infoArray[5] = $row->fb_bono;          
             $infoArray[6] = $row->fbc_bono; 
+            $infoArray[7] = $row->bono_colocacion;
+            $infoArray[8] = $row->cobranza1_7_bono; 
+            $infoArray[9] = $row->bono_pagar; 
             $infoArrayx[] = $infoArray;
         }
 

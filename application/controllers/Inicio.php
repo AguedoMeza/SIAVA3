@@ -281,7 +281,7 @@ public function index(){
     
         if($rol != 21 && $rol != 5):
 
-            // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+             //$this->data['vista'] = 'vistas/incentivos/ejecutivo';
 
             // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
             // $this->data['vista'] = 'vistas/rh/bootgrid';
@@ -339,7 +339,7 @@ function getAllDaysInAMonth($year, $month, $day = 'Monday', $daysError = 3) {
     $usersData = $this->process_model->getUserDetails($anio_semana);
     // file creation 
     $file = fopen('php://output','w');
-    $header = array("#Empleado","Nombre","Sucursal","nb_bono","pb_bono","fb_bono","fbc_bono"); 
+    $header = array("#Empleado","Nombre","Sucursal","nb_bono","pb_bono","fb_bono","fbc_bono","bono_colocacion","cobranza1_7","totalSemana+Cobranza"); 
     fputcsv($file, $header);
     foreach ($usersData as $key=>$line){ 
       fputcsv($file,$line); 

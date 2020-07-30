@@ -138,6 +138,9 @@ endif;
                         <th>PB BONO</th>
                         <th>FBT BONO</th>
                         <th>FBC BONO</th>
+                        <th>BONO COLOCACION</th>
+                        <th>COBRANZA1-7</th>
+                        <th>SEMANA+COBRANZA</th>
                     </tr>
                 </thead>
                 <tbody>
