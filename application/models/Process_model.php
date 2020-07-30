@@ -325,7 +325,7 @@ where ccs.id_credito = cred.id_credito and ccs.id_cierre = (select max(id_cierre
             ->distinct()
             ->select("anio_semana,num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono")
             ->from('avance_incentivos.pago_ejecom')
-            ->where('anio_semana', '202030');
+            ->where('anio_semana',$suc);
            
               $query->limit($length, $start)           
                     ->order_by($column_order, $column_direction);

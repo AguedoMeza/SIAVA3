@@ -41,7 +41,7 @@ endif;
              <div class="form-row">
                  <div class="col-md-6">
                      <div class="position-relative form-group">
-                         <select id="filtro" name="filtro" class="form-control" onchange="tipo_filtro(this.value)">
+                         <select id="filtro" name="filtro" class="form-control" onchange="tipo_filtro(this.value);show_table2()">
                              <option value=""></option>
                             <option value="1">Ejecutivo</option>
                             <option value="2">Gerente</option>
@@ -83,6 +83,7 @@ endif;
         $semana = array();
         foreach ($this->data['rango_semana'] as $wk):
           $semana[] = date('Y-m-d',strtotime($wk['fi']));
+          $rangoSemana[] = date('d',strtotime($wk['fi'])).' - '.date('d',strtotime($wk['ff']));
         endforeach; 
         $count = count($semana)-1;    
        
@@ -103,7 +104,7 @@ endif;
         if($hoy >= $sep_fi[0]):
         ?>  
         <?php //echo $semana[($count-$a)]; ?>    
-        <option value="<?php echo $anioSemana ?>">Días <?php echo $anioSemana; ?></option>
+        <option value="<?php echo $anioSemana ?>">Días <?php echo $rangoSemana[($count-$a)]; ?></option>
            
         
         <?php       
@@ -117,7 +118,11 @@ endif;
         <!-- Finaliza select semanas -->
           </div>
       </div>      
-          
+           <div class="row">
+              <div class="col-md-6 text-right">
+              <button id="btn_info" type="button" class="mt-2 btn btn-primary" onclick="show_table()">EXPORTAR CSV</button>
+              </div>
+          </div>
       </div>
       </div>
     
