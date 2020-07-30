@@ -83,6 +83,8 @@ class Ajax extends MY_Controller {
         
     }   
 
+    
+
     public function busqueda_ejecutivos($id=0,$filtro='',$suc=0){
         
         $start = $this->input->get('start');

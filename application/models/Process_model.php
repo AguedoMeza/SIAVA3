@@ -889,13 +889,14 @@ INNER JOIN administracion_usuarios U ON (U.id_user = P.id_user);*/
     return $query->result();
   }
   
-  public function fetch_data()
-  {
-    $this->db->select("num_empleado, nombre, id_sucursal, nb_bono, pb_bono, fbc_bono");
+  public function getUserDetails($anio_semana=''){
+    $response = array();
+    $this->db->select("num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono");
     $this->db->from('avance_incentivos.pago_ejecom');
-    $this->db->where("login",'REYNA.MARTINEZ');
-    $this->db->get();
-   
+    $this->db->where("anio_semana",$anio_semana);
+    $q = $this->db->get();
+    $response = $q->result_array();
+    return $response;
   }
 
   
