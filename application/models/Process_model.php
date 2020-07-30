@@ -14,38 +14,23 @@ class Process_model extends CI_Model{
  * 
  * 
  */  
-  public function muestra_incentivos($tipo='',$idu=0,$id_p=0,$fi='',$ff='',$perfil=array())
-  {
-          $ddate = $ff;
-          $date = new DateTime($ddate);
-          $week = $date->format("W");
-          
-          $anio = DateTime::createFromFormat("Y-m-d",$ddate);
-          
-
-          $anioSemana = $anio->format("Y").$week;
-
-
-          if($tipo == 'NB'):   
-          $this->db->select("nb_cantidad as cantidad, nb_monto_dispersado as monto_otorgado, nb_bono as bono, nb_factor as factor");
-          endif;
-          if($tipo == 'PB'):   
-          $this->db->select("pb_cantidad as cantidad, pb_monto_dispersado as monto_otorgado, pb_bono as bono, pb_factor as factor");
-          endif;
-          if($tipo == 'FB'):   
-          $this->db->select("fbt_cantidad as cantidad, fbt_monto_dispersado as monto_otorgado, fbt_bono as bono, fbt_factor as factor");
-          endif;
-
-          $this->db->from("avance_incentivos.pago_ejecom");
-          $this->db->where("anio_semana",$anioSemana);
-          $this->db->where("id_promotor",$id_p); 
-         
+  public function muestra_incentivos($tipo='',$idu=0,$id_p=0,$fi='',$ff='',$perfil=array()){
+                
+      $this->db->select("count(*) cantidad ,ifnull(sum(monto_otorgado),0) monto_otorgado,"
+      ."ifnull(round(sum(monto_otorgado) * (select factor from avance_incentivos.bono_comerciales where meta <=sum(monto_otorgado) and tipo_credito='".$tipo."' order by meta desc limit 1) ,2),0) as bono, "
+      . "ifnull((select factor from avance_incentivos.bono_comerciales where meta <=sum(monto_otorgado) and tipo_credito='".$tipo."' order by meta desc limit 1),0) as factor");
+      $this->db->from("credito cred,  prospeccion_solicitud sol");
+      $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
+      $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
+      $this->db->where("cred.fecha_inicio >=",$fi);
+      $this->db->where("cred.fecha_inicio <=",$ff);
+      $this->db->where("cred.status_activo <>", 'Cancelado');
+      $this->db->where("sol.id_promotor",$id_p);
+      $this->db->where_in("sol.id_perfil_captura",$perfil); 
       $query = $this->db->get();
       return ($query->num_rows() > 0)?$query->result():FALSE;
      
   }
-  
-  
   
   /*
    * 
