@@ -67,7 +67,7 @@ endif;
           <h5 class="card-title"></h5>
       
       
-      
+      <form method="post" action="<?php echo base_url(); ?>inicio/export_csv">
       <div class="position-relative row form-group">
           <label for="exampleEmail" class="col-sm-2 col-form-label">Semana</label>
           <div class="col-sm-4">
@@ -120,12 +120,12 @@ endif;
       </div>      
            <div class="row">
               <div class="col-md-6 text-right">
-              <button id="btn_info" type="button" class="mt-2 btn btn-primary" onclick="show_table()">EXPORTAR CSV</button>
-              </div>
+              <input id="btn_info" type="submit" class="mt-2 btn btn-primary" value="EXPORTAR CSV"></button>
+              </input>
           </div>
       </div>
       </div>
-    
+    </form>
       <div id="lista_busqueda_tipo" class="main-card mb-3 card" style="width:100%;display:none;">
         <div class="table-responsive">
             <table id="filtro_busqueda_tbl" class="table table-striped table-bordered">
