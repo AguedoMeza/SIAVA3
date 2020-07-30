@@ -896,7 +896,8 @@ INNER JOIN administracion_usuarios U ON (U.id_user = P.id_user);*/
     $this->db->where("anio_semana",$anio_semana);
     $q = $this->db->get();
     $response = $q->result_array();
-    return $response;
+    $arreglo = mb_convert_encoding($response, "Windows-1252", "UTF-8");
+    return $arreglo;
   }
 
   

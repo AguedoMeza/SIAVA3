@@ -329,8 +329,11 @@ function getAllDaysInAMonth($year, $month, $day = 'Monday', $daysError = 3) {
 
     // file name 
     $filename = 'ejecutivos_incentivos_'.date('Ymd').'.csv'; 
+    //header('Content-Type: text/html; charset=utf-8');
     header("Content-Description: File Transfer"); 
     header("Content-Disposition: attachment; filename=$filename"); 
+    header('Content-Encoding: UTF-8');
+    header('Content-type: text/csv; charset=UTF-8');
     header("Content-Type: application/csv; ");
      // get data 
     $usersData = $this->process_model->getUserDetails($anio_semana);
