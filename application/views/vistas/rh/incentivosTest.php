@@ -117,14 +117,18 @@ endif;
         </select>  
         <!-- Finaliza select semanas -->
           </div>
-      </div>      
+      </div>    
+
            <div class="row">
               <div class="col-md-6 text-right">
               <input id="btn_info" type="submit" class="mt-2 btn btn-primary" value="EXPORTAR CSV"></button>
               </input>
+   
           </div>
+
       </div>
       </div>
+
     </form>
       <div id="lista_busqueda_tipo" class="main-card mb-3 card" style="width:100%;display:none;">
         <div class="table-responsive">
@@ -134,13 +138,13 @@ endif;
                         <th>#Empleado</th>
                         <th>Nombre</th>
                         <th>Sucursal</th>
-                        <th>NB BONO</th>
-                        <th>PB BONO</th>
-                        <th>FBT BONO</th>
-                        <th>FBC BONO</th>
+                        <th>Créditos Nuevos(NB)</th>
+                        <th>Créditos Renovación(NB)</th>
+                        <th>Créditos Reactivación Tradicional(FBT)</th>
+                        <th>Créditos Reactivación Campaña(FBC)</th>
                         <th>BONO COLOCACION</th>
                         <th>COBRANZA1-7</th>
-                        <th>SEMANA+COBRANZA</th>
+                        <th>PAGO BONO</th>
                     </tr>
                 </thead>
                 <tbody>

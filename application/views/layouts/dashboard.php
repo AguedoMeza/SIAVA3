@@ -287,6 +287,7 @@
                                        Incentivos
                                     </a>
                                 </li>
+
                                 <?php if( $_SESSION['login']['rol'] == 5): ?>
                                <!--  <li>
                                     <a href="<?php //echo base_url('filtro_presolicitud') ?>" class="<?php //if($this->uri->segment(1) == "filtro_presolicitud"): ?>mm-active<?php //endif;?>">
@@ -545,7 +546,7 @@
           'paging'      : true,
        //   'pageLength':5,
           'lengthChange': false,
-          'searching'   : false,
+          'searching'   : true,
           'ordering'    : false,
           'info'        : false,
           'responsive': true,
