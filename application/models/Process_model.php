@@ -14,38 +14,23 @@ class Process_model extends CI_Model{
  * 
  * 
  */  
-  public function muestra_incentivos($tipo='',$idu=0,$id_p=0,$fi='',$ff='',$perfil=array())
-  {
-          $ddate = $ff;
-          $date = new DateTime($ddate);
-          $week = $date->format("W");
-          
-          $anio = DateTime::createFromFormat("Y-m-d",$ddate);
-          
-
-          $anioSemana = $anio->format("Y").$week;
-
-
-          if($tipo == 'NB'):   
-          $this->db->select("nb_cantidad as cantidad, nb_monto_dispersado as monto_otorgado, nb_bono as bono, nb_factor as factor");
-          endif;
-          if($tipo == 'PB'):   
-          $this->db->select("pb_cantidad as cantidad, pb_monto_dispersado as monto_otorgado, pb_bono as bono, pb_factor as factor");
-          endif;
-          if($tipo == 'FB'):   
-          $this->db->select("fbt_cantidad as cantidad, fbt_monto_dispersado as monto_otorgado, fbt_bono as bono, fbt_factor as factor");
-          endif;
-
-          $this->db->from("avance_incentivos.pago_ejecom");
-          $this->db->where("anio_semana",$anioSemana);
-          $this->db->where("id_promotor",$id_p); 
-         
+  public function muestra_incentivos($tipo='',$idu=0,$id_p=0,$fi='',$ff='',$perfil=array()){
+                
+      $this->db->select("count(*) cantidad ,ifnull(sum(monto_otorgado),0) monto_otorgado,"
+      ."ifnull(round(sum(monto_otorgado) * (select factor from avance_incentivos.bono_comerciales where meta <=sum(monto_otorgado) and tipo_credito='".$tipo."' order by meta desc limit 1) ,2),0) as bono, "
+      . "ifnull((select factor from avance_incentivos.bono_comerciales where meta <=sum(monto_otorgado) and tipo_credito='".$tipo."' order by meta desc limit 1),0) as factor");
+      $this->db->from("credito cred,  prospeccion_solicitud sol");
+      $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
+      $this->db->where("sol.id_autorizacion = cred.id_autorizacion");
+      $this->db->where("cred.fecha_inicio >=",$fi);
+      $this->db->where("cred.fecha_inicio <=",$ff);
+      $this->db->where("cred.status_activo <>", 'Cancelado');
+      $this->db->where("sol.id_promotor",$id_p);
+      $this->db->where_in("sol.id_perfil_captura",$perfil); 
       $query = $this->db->get();
       return ($query->num_rows() > 0)?$query->result():FALSE;
      
   }
-  
-  
   
   /*
    * 
@@ -333,7 +318,36 @@ where ccs.id_credito = cred.id_credito and ccs.id_cierre = (select max(id_cierre
     return $query->result();
   }  
   
-  
+  public function get_records_filtro_ejecutivos($start = 1, $length = 1, $column_order, $column_direction, $search = false,$id=0,$filtro='',$suc=0) {
+   
+    $start = ((($start > 0 ? $start : 1) - 1) * $length);
+    $query = $this->db
+            ->distinct()
+            ->select("anio_semana,num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono")
+            ->from('avance_incentivos.pago_ejecom')
+            ->where('anio_semana',$suc);
+           
+              $query->limit($length, $start)           
+                    ->order_by($column_order, $column_direction);
+                  
+    if (!empty($search)) {
+        
+        $search_terms = explode(" ", $search['value']);
+        foreach ($search_terms as $term) {
+            if (!empty($term)) {
+                
+                $query = $query->or_like('cred.id_credito', $term, 'both')
+                        ->or_like('cred.id_producto', $term, 'both')
+                        ->or_like('cred.id_sucursal', $term, 'both')
+                        ->or_like('cdd.calle', $term, 'both')
+                        ->or_like('cdp.nombre_razon_social', $term, 'both')
+                        ->or_like('cdl.empresa', $term, 'both');
+            }            
+         }
+    }
+    $query = $query->get();
+    return $query->result();
+  }  
  /*
   * 
   * PRE SOLICITUDES
@@ -874,8 +888,19 @@ INNER JOIN administracion_usuarios U ON (U.id_user = P.id_user);*/
     $query = $this->db->get();
     return $query->result();
   }
+  
+  public function getUserDetails($anio_semana=''){
+    $response = array();
+    $this->db->select("num_empleado,nombre,id_sucursal,nb_bono, pb_bono, fb_bono, fbc_bono");
+    $this->db->from('avance_incentivos.pago_ejecom');
+    $this->db->where("anio_semana",$anio_semana);
+    $q = $this->db->get();
+    $response = $q->result_array();
+    $arreglo = mb_convert_encoding($response, "Windows-1252", "UTF-8");
+    return $arreglo;
+  }
 
- 
+  
 
 
  

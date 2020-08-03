@@ -82,6 +82,71 @@ class Ajax extends MY_Controller {
         
         
     }   
+
+    
+
+    public function busqueda_ejecutivos($id=0,$filtro='',$suc=0){
+        
+        $start = $this->input->get('start');
+        $length = $this->input->get('length');
+        $columns = array(
+            0 => "num_empleado",
+            1 => "nombre",
+            2 => "id_sucursal",
+            3 => "nb_bono",
+            4 => "pb_bono",
+            5 => "fb_bono",
+            6 => "fbc_bono",
+        );
+
+        $search = $this->input->get('search');
+
+        //ORDER
+        $order = $this->input->get('order');
+        $column_order = (isset($order[0]) && isset($order[0]['column']) ? $columns[$order[0]['column']] : $columns[0]);
+        $column_direction = (isset($order[0]) && isset($order[0]['dir']) ? $order[0]['dir'] : 'desc');
+
+        // Create search
+        $records = $this->process_model->get_records_filtro_ejecutivos($start, $length, $column_order, $column_direction, $search,$id,$filtro,$suc);
+        $records_all = $this->process_model->get_records_filtro_ejecutivos(0, 1000, $column_order, $column_direction, $search,$id,$filtro,$suc);
+        
+        
+      //  var_dump($records_all);
+        //  $this->output->enable_profiler(TRUE);
+        
+        
+        $total = count($records);
+
+        $arrayOut = array(
+            "draw" => intval($this->input->get('draw')),
+            "recordsTotal" => count($records_all),
+            "recordsFiltered" => count($records_all),
+            "data" => array()
+        );
+
+        $infoArrayx = array();
+
+        foreach ($records as $row) {
+            $infoArray = array();
+            
+           
+                 
+            $infoArray[0] = $row->num_empleado;    
+            $infoArray[1] = $row->nombre;
+            $infoArray[2] = $row->id_sucursal;
+            $infoArray[3] = $row->nb_bono;
+            $infoArray[4] = $row->pb_bono;
+            $infoArray[5] = $row->fb_bono;          
+            $infoArray[6] = $row->fbc_bono; 
+            $infoArrayx[] = $infoArray;
+        }
+
+        $arrayOut['data'] = $infoArrayx;
+        echo json_encode($arrayOut);
+        
+        
+        
+    }   
     
     public function pre_solicitudes(){
         

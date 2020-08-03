@@ -31,6 +31,12 @@ public function __construct(){
  *  
  */   
 public function index(){
+
+   //$this->load->view('vistas/rh/bootgrid');
+
+   //$data['student_data'] = $this->export_csv_model->fetch_data();
+  //$this->load->view('vistas/rh/export_csv', $data);
+  // $this->data['gerente_info'] = $this->process_model->fetch_data();
     
     $fecha_hoy = date('Y-m-01');
     $fecha_fin = date('Y-m-t');
@@ -257,7 +263,6 @@ public function index(){
                * NORMALIDAD MES ANTERIOR
                * 
                */
-              //gerente normalidad mes anterior
               $this->data['gerente_normalidad_ma'] = $this->process_model->normalidad($suc,$fecha_mes_anterior,$lastDayOfMOnth);
               $this->data['bono_normalidad_ma'] =  $this->process_model->bono_normalidad($this->data['gerente_normalidad_ma'][0]->Normalidad);
               
@@ -275,13 +280,18 @@ public function index(){
        endif;
     
         if($rol != 21 && $rol != 5):
-             $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+
+            // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+
+            // $this->data['vista'] = 'vistas/incentivos/ejecutivo';
+            // $this->data['vista'] = 'vistas/rh/bootgrid';
+         //  $this->data['vista'] = 'vistas/auditoria/filtro_auditoria';
+          $this->data['vista'] = 'vistas/rh/incentivosTest';
+
         elseif($rol==5):
-             $this->data['vista'] = 'vistas/incentivos/gerente';
-        elseif($rol==5):
-             $this->data['vista'] = 'vistas/incentivos/gerente';
-        else:
-             $this->data['vista'] = 'vistas/rh/filtro_auditoria';
+           $this->data['vista'] = 'vistas/incentivos/gerente';
+           else:
+           $this->data['vista'] = 'vistas/auditoria/filtro_auditoria';
        endif;
        
        $this->load->view('layouts/dashboard');
@@ -311,6 +321,42 @@ function getAllDaysInAMonth($year, $month, $day = 'Monday', $daysError = 3) {
   
     return $days;
 }
+
+    function export_csv()
+    { 
+    $anio_semana = $this->input->post('sucursal');
+
+
+    // file name 
+    $filename = 'ejecutivos_incentivos_'.date('Ymd').'.csv'; 
+    //header('Content-Type: text/html; charset=utf-8');
+    header("Content-Description: File Transfer"); 
+    header("Content-Disposition: attachment; filename=$filename"); 
+    header('Content-Encoding: UTF-8');
+    header('Content-type: text/csv; charset=UTF-8');
+    header("Content-Type: application/csv; ");
+     // get data 
+    $usersData = $this->process_model->getUserDetails($anio_semana);
+    // file creation 
+    $file = fopen('php://output','w');
+    $header = array("#Empleado","Nombre","Sucursal","nb_bono","pb_bono","fb_bono","fbc_bono"); 
+    fputcsv($file, $header);
+    foreach ($usersData as $key=>$line){ 
+      fputcsv($file,$line); 
+    }
+    fclose($file); 
+    exit; 
+  }
+ //parte del DataTable
+ function rhTable()
+ {
+   echo $this->process_model->fetch_data();
+ }
+
+ //fin DataTable
+
+ 
+
 
 /*
  * 

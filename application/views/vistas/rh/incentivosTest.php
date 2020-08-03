@@ -13,14 +13,10 @@ if(!empty( $this->data['sucursales'])):
     
 endif;
 
+
 ?>
-
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-
+ <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
@@ -28,7 +24,7 @@ endif;
                     <i class="pe-7s-graph2 icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Búsqueda Auditoría
+                <div>INCENTIVOS - EJECUTIVOS
                     <div class="page-title-subheading">
                     </div>
                 </div>
@@ -36,19 +32,7 @@ endif;
         </div>
     </div>
     
-    <!--  <div class="mb-3 card">
-                <div class="card-header-tab card-header">
-                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-                        <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
-                        
-                    </div>
-                </div>
-          <div class="no-gutters row">
-              
-          </div>
-          <div class="text-center d-block p-3 card-footer">
-                </div>     
-      </div>-->
+    
 
      <div class="main-card mb-3 card">
          <div class="card-body">
@@ -57,13 +41,14 @@ endif;
              <div class="form-row">
                  <div class="col-md-6">
                      <div class="position-relative form-group">
-                         <select id="filtro" name="filtro" class="form-control" onchange="tipo_filtro(this.value)">
+                         <select id="filtro" name="filtro" class="form-control" onchange="tipo_filtro(this.value);show_table2()">
                              <option value=""></option>
-                            <option value="1">Domicilio</option>
-                            <option value="2">Razón Social</option>
-                            <option value="3">Teléfono</option>
+                            <option value="1">Ejecutivo</option>
+                            <option value="2">Gerente</option>
+                            
                             <!--<option value="4">Ocupación</option>-->
                          </select>
+                        
                          
                          <!--<label for="cliente" class=""></label>-->
 <!--                         <input id="idc" name="idc" type="hidden"/>
@@ -82,46 +67,77 @@ endif;
           <h5 class="card-title"></h5>
       
       
+      <form method="post" action="<?php echo base_url(); ?>inicio/export_csv">
       <div class="position-relative row form-group">
-          <label id="titulo_tipo" for="exampleEmail" class="col-sm-2 col-form-label"></label>
+          <label for="exampleEmail" class="col-sm-2 col-form-label">Semana</label>
           <div class="col-sm-4">
-              <input name="bfiltro" id="bfiltro" placeholder="" type="text" class="form-control">
-              <input type="hidden" name="id_filtro" id="id_filtro">
-          </div>
-      </div>
-      <div class="position-relative row form-group">
-          <label for="exampleEmail" class="col-sm-2 col-form-label">Sucursal</label>
-          <div class="col-sm-4">
-              <select id="sucursal" name="sucursal" class="form-control">
-                   <option value="">Selecciona sucursal</option>
-                  <?php if(!empty( $this->data['sucursales'])): foreach ( $this->data['sucursales'] as $suc): ?>
-                  <option value="<?php echo  $suc->id_sucursal ?>"><?php echo $suc->id_sucursal.' '.$suc->sucursal ?></option>
-                  <?php endforeach;                  
-                  endif;?>
-              </select>
+              <!-- Inicia select semanas -->
+        <select id="sucursal" name="sucursal" class="form-control" onchange="show_table2()">
+        <?php 
+          
+          
+
+         $hoy = date('d');
+         $mes = date('m');
+        $i=4;
+        $semana = array();
+        foreach ($this->data['rango_semana'] as $wk):
+          $semana[] = date('Y-m-d',strtotime($wk['fi']));
+          $rangoSemana[] = date('d',strtotime($wk['fi'])).' - '.date('d',strtotime($wk['ff']));
+        endforeach; 
+        $count = count($semana)-1;    
+       
+       for($a=0;$a<=$count;$a++){
+           
+            $sep_fi = explode(' - ', $semana[($count-$a)]);
+            $m = date('m',strtotime($wk['ff']));
+
+        //numero de semana en el anio
+          $ddate = $semana[($count-$a)];
+          $date = new DateTime($ddate);
+          $week = $date->format("W");
+          
+          $anio = DateTime::createFromFormat("Y-m-d",$ddate);
+          $anioSemana = $anio->format("Y").$week;
+          //fin obtencion
+            //$sep_fi[0]-$a
+        if($hoy >= $sep_fi[0]):
+        ?>  
+        <?php //echo $semana[($count-$a)]; ?>    
+        <option value="<?php echo $anioSemana ?>">Días <?php echo $rangoSemana[($count-$a)]; ?></option>
+           
+        
+        <?php       
+        endif; 
+        $i--;
+       }
+              
+       
+        ?>
+        </select>  
+        <!-- Finaliza select semanas -->
           </div>
       </div>      
-          <div class="row">
+           <div class="row">
               <div class="col-md-6 text-right">
-              <button id="btn_info" type="button" class="mt-2 btn btn-primary" onclick="show_table()">Buscar información</button>
-              </div>
+              <input id="btn_info" type="submit" class="mt-2 btn btn-primary" value="EXPORTAR CSV"></button>
+              </input>
           </div>
       </div>
       </div>
-    
+    </form>
       <div id="lista_busqueda_tipo" class="main-card mb-3 card" style="width:100%;display:none;">
         <div class="table-responsive">
             <table id="filtro_busqueda_tbl" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Búsqueda</th>
-                        <th> Id crédito</th>
-                        <th>Fecha crédito</th>                                            
-                        <th>Nombre Cliente</th>
-                        <th>Capital Dispersado</th>                            
-                        <th>Saldo vencido</th>
-                        <th>Tipo de producto</th>
-                        <th>Telefonos</th>
+                        <th>#Empleado</th>
+                        <th>Nombre</th>
+                        <th>Sucursal</th>
+                        <th>NB BONO</th>
+                        <th>PB BONO</th>
+                        <th>FBT BONO</th>
+                        <th>FBC BONO</th>
                     </tr>
                 </thead>
                 <tbody>
