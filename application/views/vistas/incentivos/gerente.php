@@ -1,5 +1,8 @@
 <?php
 
+$fecha_mes_anterior = date('2020-06-01', strtotime('-1 month'));
+$lastDayOfMOnth = date('Y-m-d', mktime(0,0,0, date('m', strtotime($fecha_mes_anterior))+1, 0, date('Y', strtotime($fecha_mes_anterior))));
+
 
 $gerente_monto = 0;$gerente_bono = 0;$gerente_cantidad=0;
 if(!empty($this->data['bono_gerente'])):    
@@ -912,7 +915,7 @@ $total_colocacion =($gerente_bono+$incentivo_nb+$incentivo_pb);
                                  <i class="lnr-pie-chart  text-white opacity-8"></i></div>
                                  <div class="widget-chart-content">
                                      <div class="widget-subheading">Porcentaje</div>
-                                     <div class="widget-numbers"><?php echo $porcentaje_nb_ma   ?>%</div>                                         
+                                     <div class="widget-numbers"><?php echo $porcentaje_nb_ma.' '.$nb_gerente_mo_ma.' '.$gerente_monto_ma.' '.$lastDayOfMOnth?></div>                                         
                                  </div>                                     
                          </div>
                          <div class="divider m-0 d-md-none d-sm-block"></div>                      
