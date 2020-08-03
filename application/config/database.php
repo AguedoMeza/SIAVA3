@@ -70,20 +70,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'avance_v55_oper';
+$active_group = '';
 $query_builder = TRUE;
 
 $db['avance_v55_oper'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.25.40.20',
-	'username' => 'BenjaminMysql',
-	'password' => 'uF/SKa',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
 	//'database' => 'avance_v55_oper',
-              'database' => 'avance_v55_oper',
+              'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
+	'db_debug' => (ENVIRONMENT !== ''),
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
@@ -99,10 +99,10 @@ $db['avance_v55_oper'] = array(
 
 $db['incentivos'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.25.40.20',
-	'username' => 'BenjaminMysql',
-	'password' => 'uF/SKa',
-	'database' => 'avance_incentivos',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -121,10 +121,10 @@ $db['incentivos'] = array(
 
 $db['slave'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.151.2',
-	'username' => 'wac',
-	'password' => '4iB6z2!e7',
-	'database' => 'wac',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -144,10 +144,10 @@ $db['slave'] = array(
 
 $db['presolicitud'] = array(
 	'dsn'	=> '',
-	'hostname' => '172.25.40.20',
-	'username' => 'BenjaminMysql',
-	'password' => 'uF/SKa',
-	'database' => 'solic_web',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -166,10 +166,10 @@ $db['presolicitud'] = array(
 
 $db['local'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
+	'hostname' => '',
+	'username' => '',
 	'password' => '',
-	'database' => 'presolicitudes',
+	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
